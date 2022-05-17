@@ -5,11 +5,11 @@ import numpy as np
 import os
 
 
-#def setup_kinect_instance():
-    #context = freenect.init()
-    #device = freenect.open_device(context, 0)
-    #freenect.set_depth_mode(device, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_11BIT)
-    #freenect.set_video_mode(device, freenect.RESOLUTION_HIGH, freenect.VIDEO_RGB)
+# def setup_kinect_instance():
+# context = freenect.init()
+# device = freenect.open_device(context, 0)
+# freenect.set_depth_mode(device, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_11BIT)
+# freenect.set_video_mode(device, freenect.RESOLUTION_HIGH, freenect.VIDEO_RGB)
 
 # function to get RGB image from kinect
 def get_video():
@@ -29,7 +29,7 @@ def get_depth():
 
 if __name__ == "__main__":
 
-    #setup_kinect_instance()
+    # setup_kinect_instance()
 
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
@@ -68,14 +68,13 @@ if __name__ == "__main__":
         # display depth image
         cv2.imshow('Depth image', depth)
 
+        old_frame = frame
+        old_depth = depth
+
+
         # quit program when 'esc' key is pressed
         k = cv2.waitKey(5) & 0xFF
         if k == 27:
             break
-
-        old_frame = frame
-
-        old_depth = depth
-
 
     cv2.destroyAllWindows()
