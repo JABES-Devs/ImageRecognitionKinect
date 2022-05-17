@@ -2,6 +2,7 @@
 import freenect
 import cv2
 import numpy as np
+import os
 
 
 #def setup_kinect_instance():
@@ -9,7 +10,6 @@ import numpy as np
     #device = freenect.open_device(context, 0)
     #freenect.set_depth_mode(device, freenect.RESOLUTION_MEDIUM, freenect.DEPTH_11BIT)
     #freenect.set_video_mode(device, freenect.RESOLUTION_HIGH, freenect.VIDEO_RGB)
-
 
 # function to get RGB image from kinect
 def get_video():
@@ -34,11 +34,23 @@ if __name__ == "__main__":
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
 
+    frame_count = 1
+    i = 98
+    old_frame = None
+    path = "/home/jabes/Documentos/ImageRecognitionKinect/frames/negative"
+
     while 1:
         # get a frame from RGB camera
         frame = get_video()
         # get a frame from depth sensor
         depth = get_depth()
+
+        if old_frame is None or old_frame is not frame:
+            frame_count += 1
+            print(frame_count)
+            if frame_count == 1 or frame_count % 10 == 0:
+                cv2.imwrite(os.path.join(path, 'frame%d.jpg' % i), frame)
+                i += 1
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -60,4 +72,10 @@ if __name__ == "__main__":
         k = cv2.waitKey(5) & 0xFF
         if k == 27:
             break
+
+        old_frame = frame
+
+        old_depth = depth
+
+
     cv2.destroyAllWindows()
