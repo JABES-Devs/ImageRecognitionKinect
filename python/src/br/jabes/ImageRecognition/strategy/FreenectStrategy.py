@@ -1,5 +1,6 @@
 import freenect
-import HaarCascadeFromOpenCv2Strategy as haarCascade
+import python.src.br.jabes.ImageRecognition.strategy.OpenCVStrategy as haarCascade
+import numpy as np
 
 
 # function to get RGB image from kinect

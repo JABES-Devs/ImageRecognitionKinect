@@ -37,7 +37,7 @@ if __name__ == "__main__":
     frame_count = 1
     i = 98
     old_frame = None
-    path = "/home/jabes/Documentos/ImageRecognitionKinect/frames/negative"
+    path = "/cascade/negative"
 
     while 1:
         # get a frame from RGB camera
