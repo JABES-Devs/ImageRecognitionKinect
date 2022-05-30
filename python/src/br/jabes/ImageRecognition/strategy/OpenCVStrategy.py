@@ -26,25 +26,22 @@ def define_cascade_classifier(cascade_source):
         return 0
 
 
-# Still set to detect eyes and faces. It will need be changed once we have the training it requires.
-# {
-def detect_cascade_in_frame(frame, symbol_a_cascade):
+def detect_cascade_in_frame(frame, cascade):
     try:
         gray = get_gray_array_for_frame(frame)
-        # faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-        symbols_a = symbol_a_cascade.detectMultiScale(gray, 1.3, 5)
-        for (x, y, w, h) in symbols_a:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 5)
-            # roi_gray = gray[y:y + w, x:x + w]
-            # roi_color = frame[y:y + h, x:x + w]
-            # eyes = eye_cascade.detectMultiScale(roi_gray, 1.3, 5)
-            # for (ex, ey, ew, eh) in eyes:
-            # cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 5)
+        rects = cascade.detectMultiScale(gray, 1.3, 5)
+        return rects
     except NameError:
-        print("Erro ao tentar detectar faces e olhos!")
+        print("Erro de deteccao usando o cascade .xml")
 
 
-# }
+def draw_rectangles_in_frame(array, frame):
+    try:
+        for (x, y, w, h) in array:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 5)
+    except NameError:
+        print("Atencao ao formato de array de retangulos: cada indice deve possuir os valores x,y,w,h")
+
 
 def save_frame_as_jpg(path, filename, i, frame):
     try:
