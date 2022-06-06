@@ -1,6 +1,12 @@
-import python.src.br.jabes.ImageRecognition.controller.ApplicationStartController as app
+#!/usr/bin/env python3
+
+import rospy
 from jproperties import Properties
-import config
+import kinect_detection_pkg.config as config
+import kinect_detection_pkg.python.controller.ApplicationStartController as app
+
+
+
 
 if __name__ == "__main__":
 
