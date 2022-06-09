@@ -15,7 +15,7 @@ def get_video():
 # function to get depth image from kinect (NUMPY object!)
 def get_depth():
     array, _ = freenect.sync_get_depth(format=freenect.DEPTH_REGISTERED)
-    # Returns everything in MILIMETERS!
+    # Returns everything in MILLIMETERS!
     # Almost identical to DEPTH.MM, except this already considers the cameras offset of 2.5cm (aligns the images)
 
     array = array.astype(np.uint16)

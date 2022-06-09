@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from kinect_detection_pkg.msg import Kinect_output  # PODERÁ ALTERAR DE ACORDO COM O TIPO DA MENSAGEM
+from kinect_detection_pkg.msg import Kinect_output
 
 
 def create_publisher(topic_name, queue_size):
